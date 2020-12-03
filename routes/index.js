@@ -31,13 +31,14 @@ router.get('/country/:state/:country', async function (req, res, next) {
     var lastWeekConfirmed = await db.getLastWeekConfirmedByState(State);
     var lastWeekRecovered = await db.getLastWeekRecoveredByState(State);
     var lastWeekDeaths = await db.getLastWeekDeathsByState(State);
+    var Date = await db.getDate();
   } else {
     var statusCountry = await db.getStatusByCountry(Country);
     var lastWeekConfirmed = await db.getLastWeekConfirmedByCountry(Country);
     var lastWeekRecovered = await db.getLastWeekRecoveredByCountry(Country);
     var lastWeekDeaths = await db.getLastWeekDeathsByCountry(Country);
+    var Date = await db.getDate();
   }
-
 
   const objectLastWeek = {
     country: statusCountry.rows[0].country,
@@ -46,6 +47,7 @@ router.get('/country/:state/:country', async function (req, res, next) {
     weekConfirmed: lastWeekConfirmed.rows[0],
     weekRecovered: lastWeekRecovered.rows[0],
     weekDeaths: lastWeekDeaths.rows[0],
+    date: Object.keys(Date.rows[0])
   }
 
 
@@ -53,6 +55,7 @@ router.get('/country/:state/:country', async function (req, res, next) {
 });
 
 router.get('/map', async function (req, res, next) {
+
   const totalConfirmed = await db.getTotalConfirmed();
   const totalRecovered = await db.getTotalRecovered();
   const totlaDeaths = await db.getTotalDeaths();
@@ -69,12 +72,11 @@ router.get('/map', async function (req, res, next) {
   }
 
   for (const key in getLatLong.rows) {
-    if ((getConfirmed.rows[key].confirmed != 0 && getRecovered.rows[key].recovered == 0) || getDeaths.rows[key].deaths == 0) {
+    if (getConfirmed.rows[key].confirmed != 0 || getRecovered.rows[key].recovered != 0 || getDeaths.rows[key].deaths != 0) {
       getLatLong.rows.splice(key, 1)
     }
   }
-
-  res.render('map', { Totals: objectTotal, Maps: getLatLong.rows });
+  res.render('map', { Totals: objectTotal, Maps: getLatLong.rows, });
 });
 
 module.exports = router;  

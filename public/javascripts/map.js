@@ -24,7 +24,7 @@ const getMaps = (data) => {
 const getMapsCountry = (data) => {
 
     const parseData = JSON.parse(data)
-
+    console.log(parseData);
     var map = L.map('mapCountry').setView([parseData.lat, parseData.long], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,5 +35,32 @@ const getMapsCountry = (data) => {
         .bindPopup(parseData.country)
         .openPopup();
 
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: parseData.date,
+            datasets: [
+                {
+                    label: 'Confirmed',
+                    data: Object.values(parseData.weekConfirmed)
+                },
+                {
+                    label: 'Recovered',
+                    data: Object.values(parseData.weekRecovered)
+                },
+                {
+                    label: 'Deaths',
+                    data: Object.values(parseData.weekDeaths)
+                }
+            ]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
 
 }

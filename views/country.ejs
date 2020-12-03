@@ -32,7 +32,7 @@
                     <a class="nav-link" href="/table">Table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/map">Map</a>
+                    <a class="nav-link" href="/map">World Maps</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/country/null/Thailand">Country</a>
@@ -74,7 +74,7 @@
                 <div id="mapCountry" style="height: 500px;"></div>
             </div>
             <div class="col-6 p-0">
-
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
@@ -89,6 +89,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="/javascripts/map.js"></script>
     <script>
         getMapsCountry(`<%- JSON.stringify(dataChart) %>`);

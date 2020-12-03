@@ -142,13 +142,13 @@ const getStatusByState = async (State) => {
 
 const getLastWeekConfirmedByCountry = async (Country) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_confirmed_csv
     where "Country/Region" = '${Country}'`;
     try {
@@ -162,13 +162,13 @@ const getLastWeekConfirmedByCountry = async (Country) => {
 
 const getLastWeekRecoveredByCountry = async (Country) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_recovered_csv
     where "Country/Region" = '${Country}'`;
     try {
@@ -182,13 +182,13 @@ const getLastWeekRecoveredByCountry = async (Country) => {
 
 const getLastWeekDeathsByCountry = async (Country) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_death_csv
     where "Country/Region" = '${Country}'`;
     try {
@@ -202,13 +202,13 @@ const getLastWeekDeathsByCountry = async (Country) => {
 
 const getLastWeekConfirmedByState = async (State) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_confirmed_csv
     where "Province/State" = '${State}'`;
     try {
@@ -222,13 +222,13 @@ const getLastWeekConfirmedByState = async (State) => {
 
 const getLastWeekRecoveredByState = async (State) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_recovered_csv
     where "Province/State" = '${State}'`;
     try {
@@ -242,15 +242,34 @@ const getLastWeekRecoveredByState = async (State) => {
 
 const getLastWeekDeathsByState = async (State) => {
     const sql = `select
-    "3/16/20" as Day1,
-    "3/17/20" as Day2,
-    "3/18/20" as Day3,
-    "3/19/20" as Day4,
-    "3/20/20" as Day5,
-    "3/21/20" as Day6,
-    "3/22/20" as Day7
+    "3/17/20" as Day1,
+    "3/18/20" as Day2,
+    "3/19/20" as Day3,
+    "3/20/20" as Day4,
+    "3/21/20" as Day5,
+    "3/22/20" as Day6,
+    "3/23/20" as Day7
     from covid19_death_csv
     where "Province/State" = '${State}'`;
+    try {
+        const data = await pool.query(sql);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
+const getDate = async (Country) => {
+    const sql = `select
+    "3/17/20",
+    "3/18/20",
+    "3/19/20",
+    "3/20/20",
+    "3/21/20",
+    "3/22/20",
+    "3/23/20"
+    from covid19_confirmed_csv`;
     try {
         const data = await pool.query(sql);
         return data;
@@ -276,5 +295,6 @@ module.exports = {
     getLastWeekDeathsByCountry,
     getLastWeekConfirmedByState,
     getLastWeekRecoveredByState,
-    getLastWeekDeathsByState
+    getLastWeekDeathsByState,
+    getDate
 }
