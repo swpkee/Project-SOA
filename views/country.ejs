@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
@@ -31,33 +31,51 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/table">Table</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/map">World Maps</a>
-                </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/map">Map</a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" href="/country/null/Thailand">Country</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="">World Total Confirmed</div>
-                <%= Totals.totalConfirmed %>
+    <div class="container mt-5 mb-5">
+        <div class="display-4 text-center font-weight-bold"><%= Status.country %></div>
+        <div class="row text-center">
+            <div class="col-4 h3">
+                <div class="">
+                    Confirmed
+                </div>
+                <div class="">
+                    <%= Status.confirmed %>
+                </div>
             </div>
-            <div class="col-4">
-                <div class="">World Total Recovered</div>
-                <%= Totals.totalRecovered %>
+            <div class="col-4 h3">
+                <div class="">
+                    Recovered
+                </div>
+                <div class="">
+                    <%= Status.recovered %>
+                </div>
             </div>
-            <div class="col-4">
-                <div class="">World Total Deaths</div>
-                <%= Totals.totalDeaths %>
+            <div class="col-4 h3">
+                <div class="">
+                    Deaths
+                </div>
+                <div class="">
+                    <%= Status.deaths %>
+                </div>
             </div>
         </div>
-        <div class="mt-5">
-            <div id="map" style="height: 500px;"></div>
+        <div class="row">
+            <div class="col-6 p-0">
+                <div id="mapCountry" style="height: 500px;"></div>
+            </div>
+            <div class="col-6 p-0">
+
+            </div>
         </div>
     </div>
     <!-- Optional JavaScript -->
@@ -69,12 +87,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="/javascripts/map.js"></script>
     <script>
-        getMaps(`<%- JSON.stringify(Maps) %>`);
-    </script>
+        getMapsCountry(`<%- JSON.stringify(dataChart) %>`);
+    </script>z
 </body>
 
 </html>

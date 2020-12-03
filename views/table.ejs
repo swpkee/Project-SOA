@@ -10,6 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
@@ -22,17 +23,20 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/table">Table</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/map">Map</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/country/null/Thailand">Country</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <div class="container">
-    <table class="table">
+  <div class="container mt-5 mb-5">
+    <table class="table" id="example">
       <thead>
         <tr>
           <th>State</th>
@@ -46,7 +50,19 @@
         <% Countrys.forEach(function(data){ %>
         <tr>
           <td><%= data.state %></td>
-          <td><%= data.country %></td>
+          <%if(data.state != null){%>
+          <td>
+            <a href="/country/<%= data.state %>/<%= data.country %>">
+              <%= data.country %>
+            </a>
+          </td>
+          <%}else{%>
+          <td>
+            <a href="/country/null/<%= data.country %>">
+              <%= data.country %>
+            </a>
+          </td>
+          <%}%>
           <td><%= data.confirmed %></td>
           <td><%= data.recovered %></td>
           <td><%= data.deaths %></td>
@@ -64,6 +80,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#example').DataTable();
+    });
+  </script>
 </body>
 
 </html>

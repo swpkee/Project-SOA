@@ -9,8 +9,31 @@ const getMaps = (data) => {
     }).addTo(map);
 
     for (const key in parseData) {
-        L.marker([parseData[key].lat, parseData[key].long]).addTo(map)
-            .bindPopup(parseData[key].country)
-            .openPopup();
+        if (parseData[key].state != '') {
+            L.marker([parseData[key].lat, parseData[key].long]).addTo(map)
+                .bindPopup(`<a href="/country/${parseData[key].state}/${parseData[key].country}">${parseData[key].state}</a>`)
+                .openPopup();
+        } else {
+            L.marker([parseData[key].lat, parseData[key].long]).addTo(map)
+                .bindPopup(`<a href="/country/null/${parseData[key].country}">${parseData[key].country}</a>`)
+                .openPopup();
+        }
     }
+}
+
+const getMapsCountry = (data) => {
+
+    const parseData = JSON.parse(data)
+
+    var map = L.map('mapCountry').setView([parseData.lat, parseData.long], 5);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([parseData.lat, parseData.long]).addTo(map)
+        .bindPopup(parseData.country)
+        .openPopup();
+
+
 }
