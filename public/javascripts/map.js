@@ -47,6 +47,7 @@ const getMapsCountry = (data) => {
                 {
                     label: 'Confirmed',
                     data: Object.values(parseData.weekConfirmed)
+
                 },
                 {
                     label: 'Recovered',

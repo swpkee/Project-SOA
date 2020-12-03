@@ -1,0 +1,63 @@
+.Editbox1 {
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 5px 5px 6px 2px #64646480;
+  border-radius: 8px;
+  padding-bottom: 20px;
+}
+
+.Editbox2 {
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 5px 5px 6px 2px #64646480;
+  border-radius: 8px;
+  padding-bottom: 20px;
+}
+
+.Editbox3 {
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 5px 5px 6px 2px #64646480;
+  border-radius: 8px;
+  padding-bottom: 20px;
+}
+
+.Editcolor1 {
+  background-color: #ea911c;
+  border-radius: 100%;
+}
+
+.Editcolor2 {
+  background-color: rgb(44, 216, 73);
+  border-radius: 100%;
+}
+
+.Editcolor3 {
+  background-color: #ea1c1c;
+  border-radius: 100%;
+}
+
+.box {
+  margin-top: 30px;
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 5px 5px 6px 2px #64646480;
+  border-radius: 8px;
+  padding-bottom: 20px;
+  margin-bottom: 60px;
+}
+
+a {
+  color: rgb(209, 52, 52);
+}
+
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: rgb(209, 52, 52);
+  border-color: rgb(209, 52, 52);
+}
+
+.page-link {
+  color: rgb(209, 52, 52);
+}
